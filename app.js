@@ -3,7 +3,7 @@
 // ========================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Cargar la configuración
+  // 1. Cargar la configuración con datos genéricos
   const config = typeof INVITATION_CONFIG !== 'undefined' ? INVITATION_CONFIG : {
     nombre: "Lautaro",
     edad: 3,
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     linkMaps.href = config.linkGoogleMaps || "https://maps.google.com";
   }
 
-  // Enlace a WhatsApp genérico
+  // Enlace a WhatsApp 100% Genérico
   if (linkWhatsApp) {
     const cleanPhone = (config.telefonoWhatsApp || "56912345678").replace(/[^0-9]/g, '');
     const encodedMsg = encodeURIComponent(config.mensajeWhatsApp || "¡Hola! Confirmo mi asistencia al cumpleaños 🎉");
@@ -116,4 +116,26 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // 6. Cuenta Regresiva
+  function updateCountdown() {
+    if (!countdownText) return;
+    const targetDate = new Date(config.fechaISO || "2026-09-13T15:00:00").getTime();
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+      countdownText.textContent = "¡Es Hoy! 🎉";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+    countdownText.textContent = `${days}d ${hours}h ${minutes}m 🚀`;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
 });
