@@ -1,9 +1,4 @@
-// ========================================================
-// 🎈 LÓGICA INTERACTIVA - INVITACIÓN TOY STORY 🚀🤠
-// ========================================================
-
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Cargar la configuración con datos genéricos
   const config = typeof INVITATION_CONFIG !== 'undefined' ? INVITATION_CONFIG : {
     nombre: "Lautaro",
     edad: 3,
@@ -22,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     reproducirMusica: true
   };
 
-  // 2. Elementos del DOM
   const txtSurpriseTitle = document.getElementById('txtSurpriseTitle');
   const txtSurpriseSub = document.getElementById('txtSurpriseSub');
   const txtDate = document.getElementById('txtDate');
@@ -41,14 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const musicStatusText = document.getElementById('musicStatusText');
   const bgAudio = document.getElementById('bgAudio');
 
-  // Botones e interactivos
   const btnOpenInvite = document.getElementById('btnOpenInvite');
   const btnPrevSlide2 = document.getElementById('btnPrevSlide2');
   const btnNextSlide2 = document.getElementById('btnNextSlide2');
   const btnPrevSlide3 = document.getElementById('btnPrevSlide3');
   const btnMoreConfetti = document.getElementById('btnMoreConfetti');
 
-  // 3. Poblar datos en la interfaz
   if (txtSurpriseTitle) txtSurpriseTitle.textContent = config.tituloSorpresa || "¡Tienes una sorpresa!";
   if (txtSurpriseSub) txtSurpriseSub.textContent = config.subtituloSorpresa || "¡Toca abajo para descubrir la invitación!";
   if (txtDate) txtDate.textContent = config.fechaTexto;
@@ -58,26 +50,19 @@ document.addEventListener('DOMContentLoaded', () => {
   if (txtLocationAddress) txtLocationAddress.textContent = config.direccion;
   if (txtExtraNote) txtExtraNote.textContent = config.notaExtra;
 
-  // Enlace a Google Maps
   if (linkMaps) {
     linkMaps.href = config.linkGoogleMaps || "https://maps.google.com";
   }
 
-  // Enlace a WhatsApp 100% Genérico
   if (linkWhatsApp) {
     const cleanPhone = (config.telefonoWhatsApp || "56912345678").replace(/[^0-9]/g, '');
     const encodedMsg = encodeURIComponent(config.mensajeWhatsApp || "¡Hola! Confirmo mi asistencia al cumpleaños 🎉");
     linkWhatsApp.href = `https://wa.me/${cleanPhone}?text=${encodedMsg}`;
   }
 
-  // 4. Navegación entre láminas
   function goToSlide(slideIndex) {
-    slides.forEach((s, idx) => {
-      s.classList.toggle('active', idx === slideIndex);
-    });
-    pageDots.forEach((d, idx) => {
-      d.classList.toggle('active', idx === slideIndex);
-    });
+    slides.forEach((s, idx) => s.classList.toggle('active', idx === slideIndex));
+    pageDots.forEach((d, idx) => d.classList.toggle('active', idx === slideIndex));
   }
 
   if (btnOpenInvite) {
@@ -104,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5. Control de música
   if (musicToggleBtn && bgAudio) {
     musicToggleBtn.addEventListener('click', () => {
       if (bgAudio.paused) {
@@ -117,7 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 6. Cuenta Regresiva
   function updateCountdown() {
     if (!countdownText) return;
     const targetDate = new Date(config.fechaISO || "2026-09-13T15:00:00").getTime();
