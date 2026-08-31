@@ -1,0 +1,731 @@
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=DynaPuff:wght@500;700&family=Fredoka:wght@400;600;700&family=Lilita+One&family=Caveat:wght@700&display=swap');
+
+:root {
+  --ts-sky: #42b9ff;
+  --ts-yellow: #fed100;
+  --ts-yellow-dark: #e5b800;
+  --ts-red: #ea2328;
+  --ts-red-dark: #b81418;
+  --ts-blue: #0b68b8;
+  --ts-blue-dark: #07477f;
+  --ts-green-buzz: #8bd346;
+  --ts-purple-buzz: #9346d3;
+  --ts-wood: #c8813a;
+  --ts-wood-dark: #91541c;
+  --ts-cow-white: #ffffff;
+  --ts-dark: #202428;
+  --ts-wa: #25D366;
+  --ts-wa-dark: #128C7E;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Fredoka', cursive, sans-serif;
+  color: #333;
+}
+
+/* Fondo Andy's Room Clouds limpio y estático */
+.room-background {
+  position: fixed;
+  inset: 0;
+  background-color: #38b6ff;
+  background-image: url('assets/clouds-bg.jpg');
+  background-repeat: repeat;
+  background-size: 320px auto;
+  background-position: center top;
+  z-index: 1;
+}
+
+/* App Container */
+.app-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+/* Botón flotante de Música */
+.music-toggle-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 50;
+  background: #ffffff;
+  border: 3px solid var(--ts-yellow);
+  border-radius: 50px;
+  padding: 6px 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Fredoka', cursive;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--ts-blue-dark);
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.music-toggle-btn:active {
+  transform: scale(0.92);
+}
+
+.music-toggle-btn.playing {
+  background: #fffdf0;
+  border-color: var(--ts-red);
+}
+
+.music-toggle-btn.playing .music-icon {
+  animation: musicSpin 2.5s linear infinite;
+  display: inline-block;
+}
+
+@keyframes musicSpin {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Contenedor principal de tarjetas */
+.card-deck {
+  width: 100%;
+  max-width: 430px;
+  height: 90vh;
+  max-height: 720px;
+  position: relative;
+  perspective: 1200px;
+}
+
+/* Tarjeta individual */
+.slide-card {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  border-radius: 28px;
+  border: 6px solid var(--ts-yellow);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25), 0 0 0 4px var(--ts-blue);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 12px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(50px) scale(0.92) rotate(3deg);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+  z-index: 5;
+}
+
+.slide-card.active {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0) scale(1) rotate(0deg);
+  z-index: 10;
+}
+
+.slide-card.prev {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-60px) scale(0.9) rotate(-4deg);
+}
+
+/* Header Badge Banner */
+.card-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ts-blue);
+  color: #fff;
+  padding: 5px 14px;
+  border-radius: 50px;
+  font-family: 'Lilita One', cursive;
+  font-size: 0.88rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 0 var(--ts-blue-dark);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  animation: pulseBadge 2.5s infinite;
+}
+
+@keyframes pulseBadge {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* =========================================
+   SLIDE 1: LOGO TOY STORY GIGANTE Y WOODY
+========================================= */
+.logo-wrapper {
+  width: 98%;
+  max-width: 360px;
+  margin: 4px 0 2px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: logoFloat 3.5s ease-in-out infinite;
+  cursor: default;
+  pointer-events: none;
+}
+
+.toy-story-logo-img {
+  width: 100%;
+  height: auto;
+  max-height: 140px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-6px) scale(1.03); }
+}
+
+.title-cute-surprise {
+  font-family: 'Chewy', 'DynaPuff', cursive;
+  font-size: 2.15rem;
+  line-height: 1.05;
+  text-align: center;
+  color: #ea2328;
+  letter-spacing: 1px;
+  text-shadow: 
+    2px 2px 0px #fed100,
+    3px 3px 0px #0b68b8,
+    4px 5px 10px rgba(0,0,0,0.2);
+  margin: 2px 0;
+  animation: titleBounce 3s ease-in-out infinite;
+  cursor: default;
+}
+
+@keyframes titleBounce {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.03) rotate(-1deg); }
+}
+
+.subtitle-desc {
+  font-family: 'Fredoka', cursive;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #4a5568;
+  text-align: center;
+  line-height: 1.3;
+  margin: 2px 8px;
+}
+
+.woody-avatar-container {
+  position: relative;
+  width: 135px;
+  height: 135px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2px 0;
+  cursor: default;
+  pointer-events: none;
+}
+
+.woody-glow-circle {
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(254, 209, 0, 0.5) 0%, rgba(254, 209, 0, 0) 70%);
+  animation: woodyPulse 2s infinite ease-out;
+}
+
+@keyframes woodyPulse {
+  0% { transform: scale(0.85); opacity: 1; }
+  100% { transform: scale(1.3); opacity: 0; }
+}
+
+.woody-img-character {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.22));
+  animation: woodyWiggle 3.5s infinite ease-in-out;
+}
+
+@keyframes woodyWiggle {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-4px) rotate(-3deg); }
+  75% { transform: translateY(-2px) rotate(3deg); }
+}
+
+.sheriff-star-floating {
+  position: absolute;
+  top: -2px;
+  right: 6px;
+  font-size: 26px;
+  z-index: 4;
+  animation: starFloat 2s infinite alternate ease-in-out;
+}
+
+@keyframes starFloat {
+  0% { transform: translateY(0) rotate(0deg) scale(1); }
+  100% { transform: translateY(-8px) rotate(15deg) scale(1.15); }
+}
+
+/* =========================================
+   SLIDE 2: LOGO LAUTARO CUMPLE 3 GIGANTE + HERO
+========================================= */
+.custom-birthday-logo-wrapper {
+  width: 96%;
+  max-width: 350px;
+  margin: 0 0 4px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: birthdayLogoBounce 3s ease-in-out infinite;
+}
+
+.custom-birthday-logo-img {
+  width: 100%;
+  height: auto;
+  max-height: 125px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.28));
+}
+
+@keyframes birthdayLogoBounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-4px) scale(1.02); }
+}
+
+.flying-hero-box {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  border: 2px dashed var(--ts-blue);
+  border-radius: 16px;
+  padding: 6px 10px;
+  margin: 0 0 6px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  box-shadow: 0 3px 8px rgba(11, 104, 184, 0.1);
+}
+
+.buzz-woody-hero-img {
+  width: 105px;
+  height: 105px;
+  min-width: 105px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
+  animation: epicFly 3s ease-in-out infinite alternate;
+}
+
+@keyframes epicFly {
+  0% { transform: translateY(3px) rotate(-3deg) scale(1); }
+  100% { transform: translateY(-5px) rotate(3deg) scale(1.04); }
+}
+
+.flying-hero-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 2px;
+}
+
+.flying-quote {
+  font-family: 'Lilita One', cursive;
+  font-size: 1.05rem;
+  color: var(--ts-blue-dark);
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.flying-subtext {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #334155;
+  line-height: 1.2;
+}
+
+/* Cuenta Regresiva */
+.countdown-pill-box {
+  width: 100%;
+  background: #fff3c4;
+  border: 2px solid var(--ts-yellow-dark);
+  border-radius: 14px;
+  padding: 5px 10px;
+  text-align: center;
+  font-family: 'Lilita One', cursive;
+  font-size: 0.95rem;
+  color: #8c6d12;
+  margin-bottom: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+}
+
+.countdown-numbers {
+  color: var(--ts-red-dark);
+  font-size: 1rem;
+}
+
+.info-cards-grid {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 0 0 6px 0;
+}
+
+.info-item-row {
+  display: flex;
+  align-items: center;
+  background: #fff9e6;
+  border: 2px solid var(--ts-yellow-dark);
+  border-left: 6px solid var(--ts-red);
+  border-radius: 12px;
+  padding: 5px 8px;
+  gap: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.info-icon-circle {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--ts-yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.info-text-col {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.info-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #8c6d12;
+  letter-spacing: 0.5px;
+}
+
+.info-val {
+  font-family: 'Fredoka', cursive;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+/* =========================================
+   SLIDE 3: SLINKY DOG + UBICACIÓN + CONFIRMACIÓN
+========================================= */
+.slinky-banner-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #fffbe8;
+  border: 2px solid var(--ts-yellow-dark);
+  border-radius: 18px;
+  padding: 8px 12px;
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.slinky-img-thumb {
+  width: 78px;
+  height: 78px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18));
+  animation: slinkyBounce 2.5s infinite ease-in-out;
+}
+
+@keyframes slinkyBounce {
+  0%, 100% { transform: translateY(0) scaleX(1); }
+  50% { transform: translateY(-4px) scaleX(1.05); }
+}
+
+.slinky-text-bubble {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ts-wood-dark);
+  text-align: left;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.location-card-box {
+  width: 100%;
+  background: #edf7ff;
+  border: 3px solid var(--ts-blue);
+  border-radius: 16px;
+  padding: 10px 12px;
+  text-align: center;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+  margin-bottom: 6px;
+}
+
+.location-place-name {
+  font-family: 'Lilita One', cursive;
+  font-size: 1.15rem;
+  color: var(--ts-blue-dark);
+  margin-bottom: 2px;
+}
+
+.location-address-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #4b6382;
+  margin-bottom: 6px;
+}
+
+.btn-maps {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: #ffffff;
+  color: var(--ts-blue);
+  border: 2px solid var(--ts-blue);
+  border-radius: 12px;
+  padding: 8px 10px;
+  font-family: 'Fredoka', cursive;
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--ts-blue-dark);
+  transition: all 0.15s ease;
+}
+
+.btn-maps:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--ts-blue-dark);
+}
+
+.rsvp-box {
+  width: 100%;
+  background: #f0fdf4;
+  border: 3px solid #86efac;
+  border-radius: 16px;
+  padding: 10px 12px;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.rsvp-title {
+  font-family: 'Lilita One', cursive;
+  font-size: 1.12rem;
+  color: #15803d;
+  margin-bottom: 2px;
+}
+
+.rsvp-subtitle {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #166534;
+  margin-bottom: 6px;
+}
+
+/* WhatsApp RSVP Button */
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: linear-gradient(180deg, #25D366 0%, #1da851 100%);
+  color: #ffffff;
+  border: 3px solid #ffffff;
+  border-radius: 16px;
+  padding: 12px 14px;
+  font-family: 'Lilita One', cursive;
+  font-size: 1.15rem;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 5px 0 #0f6630, 0 8px 18px rgba(37, 211, 102, 0.4);
+  animation: waPulse 2s infinite;
+  transition: transform 0.15s;
+}
+
+.btn-whatsapp:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #0f6630;
+}
+
+@keyframes waPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.note-extra {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  text-align: center;
+  margin-top: 2px;
+}
+
+/* =========================================
+   BUTTONS & CONTROLS
+========================================= */
+.btn-primary-toy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 290px;
+  background: linear-gradient(180deg, #fed100 0%, #e5b800 100%);
+  color: var(--ts-red-dark);
+  border: 4px solid #ffffff;
+  border-radius: 20px;
+  padding: 11px 16px;
+  font-family: 'Lilita One', cursive;
+  font-size: 1.15rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 5px 0 var(--ts-wood-dark), 0 8px 16px rgba(0,0,0,0.2);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.btn-primary-toy:hover {
+  filter: brightness(1.05);
+}
+
+.btn-primary-toy:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 var(--ts-wood-dark);
+}
+
+.btn-secondary-toy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #e2e8f0;
+  color: #475569;
+  border: 2px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 7px 12px;
+  font-family: 'Fredoka', cursive;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-secondary-toy:active {
+  transform: scale(0.95);
+}
+
+.btn-group-nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.andy-signature {
+  font-family: 'Caveat', cursive;
+  font-size: 1.3rem;
+  color: var(--ts-wood-dark);
+  transform: rotate(-4deg);
+  margin-top: 2px;
+}
+
+/* Pagination Dots */
+.pagination-container {
+  position: absolute;
+  bottom: 10px;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  padding: 5px 14px;
+  border-radius: 50px;
+  border: 3px solid var(--ts-yellow);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.page-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  border: 2px solid #94a3b8;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.page-dot.active {
+  width: 26px;
+  border-radius: 10px;
+  background: var(--ts-red);
+  border-color: var(--ts-red-dark);
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-height: 680px) {
+  .slide-card {
+    padding: 10px 8px;
+  }
+  .toy-story-logo-img {
+    max-height: 110px;
+  }
+  .title-cute-surprise {
+    font-size: 1.85rem;
+  }
+  .custom-birthday-logo-img {
+    max-height: 100px;
+  }
+  .buzz-woody-hero-img {
+    width: 90px;
+    height: 90px;
+    min-width: 90px;
+  }
+  .woody-avatar-container {
+    width: 115px;
+    height: 115px;
+  }
+  .slinky-img-thumb {
+    width: 60px;
+    height: 60px;
+  }
+  .info-item-row {
+    padding: 4px 8px;
+  }
+  .info-icon-circle {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    font-size: 14px;
+  }
+}
