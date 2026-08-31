@@ -5,39 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>¡Invitación al Cumpleaños de Lautaro! 🤠🚀</title>
   
-  <!-- Favicon oficial con el logo de Toy Story -->
   <link rel="icon" type="image/svg+xml" href="assets/toy_story_logo.svg">
   <link rel="alternate icon" href="assets/toy_story_logo.svg">
   
   <link rel="stylesheet" href="styles.css">
-  <!-- Librería Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
-  <!-- Fondo de la habitación de Andy limpio y nítido -->
   <div class="room-background"></div>
 
   <div class="app-container">
     
-    <!-- Botón flotante de Música -->
+    <!-- Botón de Música -->
     <button id="musicToggle" class="music-toggle-btn" title="Música de Fondo">
       <span class="music-icon">🎵</span>
       <span id="musicStatusText">Música: OFF</span>
     </button>
 
-    <!-- Elemento de audio con soporte múltiple -->
     <audio id="bgAudio" loop preload="auto">
       <source src="assets/music.mp3" type="audio/mpeg">
       <source src="assets/music.mp3.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Contenedor Principal de las Láminas -->
     <main class="card-deck" id="cardDeck">
       
-      <!-- ============================================== -->
-      <!-- LÁMINA 1: PORTADA CON LOGO GIGANTE Y WOODY     -->
-      <!-- ============================================== -->
+      <!-- LÁMINA 1 -->
       <section class="slide-card active" id="slide1" data-index="0">
         <div class="card-header-badge">
           <span>🤠</span>
@@ -45,23 +38,19 @@
           <span>🚀</span>
         </div>
 
-        <!-- Logo Oficial Toy Story Mucho Más Grande -->
         <div class="logo-wrapper" id="toyStoryLogoBtn">
           <img src="assets/toy_story_logo.svg" alt="Toy Story Logo" class="toy-story-logo-img">
         </div>
 
-        <!-- Título con tipografía tierna y alegre -->
         <h1 class="title-cute-surprise" id="txtSurpriseTitle">¡Tienes una sorpresa!</h1>
         <p class="subtitle-desc" id="txtSurpriseSub">¡Toca abajo para descubrir la invitación!</p>
 
-        <!-- Personaje Woody animado limpio y destacado -->
         <div class="woody-avatar-container" id="woodyCover">
           <div class="woody-glow-circle"></div>
           <img src="assets/woody.png" alt="Woody Toy Story" class="woody-img-character">
           <div class="sheriff-star-floating">⭐</div>
         </div>
 
-        <!-- Único botón interactivo para abrir -->
         <button class="btn-primary-toy" id="btnOpenInvite">
           <span>🎁 ¡Abrir Invitación! 🎁</span>
         </button>
@@ -69,9 +58,7 @@
         <div class="andy-signature" id="txtSignature1">Con cariño, Lau</div>
       </section>
 
-      <!-- ============================================== -->
-      <!-- LÁMINA 2: LAUTARO CUMPLE 3 GIGANTE + HERO      -->
-      <!-- ============================================== -->
+      <!-- LÁMINA 2 -->
       <section class="slide-card" id="slide2" data-index="1">
         <div class="card-header-badge">
           <span>⭐</span>
@@ -79,12 +66,10 @@
           <span>⭐</span>
         </div>
 
-        <!-- Logo de Lautaro ¡Cumple 3! Gigante y Protagónico -->
         <div class="custom-birthday-logo-wrapper">
           <img src="assets/lautaro_cumple3_logo.png" alt="Lautaro ¡Cumple 3!" class="custom-birthday-logo-img">
         </div>
 
-        <!-- HERO: Buzz & Woody volando con gran presencia -->
         <div class="flying-hero-box">
           <img src="assets/buzz_woody.png" alt="Buzz y Woody volando juntos" class="buzz-woody-hero-img">
           <div class="flying-hero-text">
@@ -93,13 +78,11 @@
           </div>
         </div>
 
-        <!-- Cuenta Regresiva Automática -->
         <div class="countdown-pill-box" id="countdownBox">
           <span>⏳ Faltan: </span>
           <span class="countdown-numbers" id="countdownText">Calculando...</span>
         </div>
 
-        <!-- Tarjetas de Información -->
         <div class="info-cards-grid">
           <div class="info-item-row">
             <div class="info-icon-circle">📅</div>
@@ -126,7 +109,6 @@
           </div>
         </div>
 
-        <!-- Botones de Navegación -->
         <div class="btn-group-nav">
           <button class="btn-secondary-toy" id="btnPrevSlide2">⬅️ Volver</button>
           <button class="btn-primary-toy" id="btnNextSlide2" style="max-width: 210px; font-size: 1.05rem; padding: 10px 14px;">
@@ -135,9 +117,7 @@
         </div>
       </section>
 
-      <!-- ============================================== -->
-      <!-- LÁMINA 3: SLINKY DOG + UBICACIÓN + WHATSAPP    -->
-      <!-- ============================================== -->
+      <!-- LÁMINA 3 -->
       <section class="slide-card" id="slide3" data-index="2">
         <div class="card-header-badge" style="background: var(--ts-red);">
           <span>🎈</span>
@@ -145,7 +125,6 @@
           <span>🎈</span>
         </div>
 
-        <!-- Personaje Slinky Dog con mensaje cálido y limpio -->
         <div class="slinky-banner-box">
           <img src="assets/slinky.png" alt="Slinky Dog Toy Story" class="slinky-img-thumb">
           <div class="slinky-text-bubble">
@@ -153,22 +132,22 @@
           </div>
         </div>
 
-        <!-- Tarjeta de Ubicación con Google Maps Real -->
+        <!-- Ubicación Genérica Directa -->
         <div class="location-card-box">
           <div style="font-size: 22px; margin-bottom: 2px;">🏰</div>
           <div class="location-place-name" id="txtLocationName">¡Lugar del Festejo!</div>
-          <div class="location-address-text" id="txtLocationAddress">Toca el botón para ver la ubicación exacta</div>
+          <div class="location-address-text" id="txtLocationAddress">Toca el botón para ver la ubicación</div>
           <a href="https://maps.google.com" target="_blank" class="btn-maps" id="linkMaps">
             <span>🗺️</span>
             <span>Ver cómo llegar en Google Maps</span>
           </a>
         </div>
 
-        <!-- Tarjeta de Confirmación de WhatsApp Genérica -->
+        <!-- WhatsApp Genérico Directo -->
         <div class="rsvp-box">
           <div class="rsvp-title">¡Confirma tu Asistencia!</div>
           <div class="rsvp-subtitle">Toca el botón para avisarnos por WhatsApp:</div>
-          <a href="https://wa.me/56912345678" target="_blank" class="btn-whatsapp" id="linkWhatsApp">
+          <a href="https://wa.me/56912345678?text=Hola%20confirmo%20mi%20asistencia" target="_blank" class="btn-whatsapp" id="linkWhatsApp">
             <svg style="width: 24px; height: 24px; fill: white;" viewBox="0 0 24 24">
               <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 14.99 3.81 13.47 3.81 11.91C3.81 7.37 7.5 3.67 12.05 3.67M9.53 7.34C9.36 7.34 9.09 7.4 8.87 7.65C8.65 7.89 8.02 8.48 8.02 9.71C8.02 10.94 8.91 12.12 9.04 12.29C9.17 12.46 10.8 14.97 13.29 16.05C13.88 16.31 14.34 16.46 14.7 16.57C15.29 16.76 15.83 16.73 16.26 16.67C16.74 16.6 17.74 16.06 17.95 15.47C18.16 14.88 18.16 14.37 18.1 14.27C18.03 14.16 17.87 14.1 17.61 13.97C17.36 13.85 16.12 13.23 15.89 13.15C15.66 13.06 15.49 13.02 15.32 13.27C15.15 13.52 14.67 14.1 14.52 14.27C14.37 14.44 14.23 14.46 13.97 14.34C13.72 14.21 12.89 13.94 11.91 13.07C11.15 12.39 10.63 11.55 10.5 11.33C10.37 11.12 10.49 11 10.62 10.87C10.73 10.76 10.87 10.58 11 10.43C11.13 10.28 11.17 10.17 11.26 10C11.34 9.83 11.3 9.68 11.24 9.56C11.17 9.43 10.66 8.19 10.45 7.68C10.24 7.18 10.03 7.25 9.87 7.24C9.72 7.24 9.53 7.34 9.53 7.34Z" />
             </svg>
@@ -180,7 +159,6 @@
           ⭐ Traer ropa cómoda para jugar. ¡No faltes a esta gran fiesta!
         </div>
 
-        <!-- Botones Finales -->
         <div class="btn-group-nav">
           <button class="btn-secondary-toy" id="btnPrevSlide3">⬅️ Ver Datos</button>
           <button class="btn-secondary-toy" id="btnMoreConfetti" style="background: var(--ts-yellow); color: #78350f; border-color: var(--ts-yellow-dark);">
@@ -191,16 +169,14 @@
 
     </main>
 
-    <!-- Indicador de Progreso (1 - 2 - 3) -->
-    <nav class="pagination-container" aria-label="Progreso de la invitación">
-      <div class="page-dot active" data-index="0" title="Portada"></div>
-      <div class="page-dot" data-index="1" title="Detalles"></div>
-      <div class="page-dot" data-index="2" title="Ubicación y WhatsApp"></div>
+    <nav class="pagination-container" aria-label="Progreso">
+      <div class="page-dot active" data-index="0"></div>
+      <div class="page-dot" data-index="1"></div>
+      <div class="page-dot" data-index="2"></div>
     </nav>
 
   </div>
 
-  <!-- Scripts -->
   <script src="config.js"></script>
   <script src="app.js"></script>
 </body>
